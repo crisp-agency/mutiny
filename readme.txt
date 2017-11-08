@@ -22,3 +22,12 @@ Agency.
 4. Click on the 'Activate' link to use your new theme right away.
 5. Navigate to Appearance > Customize in your admin panel and customize to
    taste.
+
+== Changelog ==
+
+= 0.0.1 =
+* Released: November 8, 2017
+
+This is the initial development release of the theme. It contains the
+minimum code needed to activate the theme from within the WordPress
+administration area.
