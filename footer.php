@@ -12,6 +12,13 @@
 
 ?>
 
+</section>
+
+<aside class="pencils">
+	<img class="pencil left" src="<?php bloginfo('template_url'); ?>/images/icon-pencil-black.svg" alt="Pencil">
+	<img class="pencil right" src="<?php bloginfo('template_url'); ?>/images/icon-pencil-black.svg" alt="Pencil">
+</aside>
+
 <?php wp_footer(); ?>
 
 </body>

@@ -16,6 +16,8 @@ Tags: accessibility-ready, custom-menu, editor-style, translation-ready
  * 1.0 - Embed Fonts
  * 2.0 - Base Elements
  * 3.0 - Wordpress Elements
+ * 3.0 - Wordpress Elements
+ * 4.0 - Loading Animations
  */
 
 
@@ -191,31 +193,7 @@ img {
 
 a {
 	color: #bea67c;
-	display: inline-block;
-	position: relative;
 	text-decoration: none;
-	transition: all 0.3s;
-}
-
-a:hover {
-	color: #525252;
-}
-
-a:before {
-	background-color: #bea67c;
-	bottom: -2px;
-	content: '';
-	display: block;
-	height: 3px;
-	left: 50%;
-	position: absolute;
-	transition: width 0.3s;
-	transform: translateX(-50%); 
-	width: 0;
-}
-
-a:hover:before {
-	width: 100%;
 }
 
 ::-moz-selection {
@@ -230,10 +208,6 @@ a:hover:before {
 /**
  * 3.0 - Wordpress Elements
  */
-
-#wpadminbar a:before {
-	display: none;
-}
 
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);
@@ -334,15 +308,6 @@ a:hover:before {
 	width: calc(100% - 20px);
 }
 
-.gallery-item a {
-	display: inline;
-    overflow: hidden;
-}
-
-.gallery-item a:before {
-	display: none;
-}
-
 .gallery-item img {
 	display: block;
 	width: 100%;
@@ -421,4 +386,36 @@ a:hover:before {
         clear: left;
 	}
 	
+}
+
+
+/**
+ * 4.0 - Loading Animations
+ */
+
+.mutiny {
+	display: none;
+}
+
+.pencils {
+	display: none;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.pencil {
+    display: block;
+    height: 100px;
+    width: auto;
+}
+
+.pencil.left {
+    transform: rotate(45deg); 
+}
+
+.pencil.right {
+    transform: rotate(-45deg); 
+    margin-top: -100px;
 }
