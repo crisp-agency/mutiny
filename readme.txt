@@ -25,6 +25,12 @@ Agency.
 
 == Changelog ==
 
+= 0.0.2 =
+* Released: November 21, 2017
+
+This development release contains the styles for all of the base HTML elements
+that are available in the WordPress WYSIWYG.
+
 = 0.0.1 =
 * Released: November 8, 2017
 
