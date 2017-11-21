@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 137.15 141.4">
+	<defs>
+		<style>
+			.gray-plus-symbol {
+				fill: #ccc;
+			}
+		</style>
+	</defs>
+	<polygon class="gray-plus-symbol" points="77.08 62.46 77.08 0 60.07 0 60.07 62.46 0 62.46 0 78.41 60.07 78.41 60.07 141.4 77.08 141.4 77.08 78.41 137.15 78.41 137.15 62.46 77.08 62.46" />
+</svg>

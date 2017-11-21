@@ -8,3 +8,417 @@ Version: 0.0.1
 Text Domain: mutiny
 Tags: accessibility-ready, custom-menu, editor-style, translation-ready
 */
+ 
+
+/**
+ * Table of Contents
+ *
+ * 1.0 - Embed Fonts
+ * 2.0 - Base Elements
+ * 3.0 - Wordpress Elements
+ */
+
+
+/**
+ * 1.0 - Embed Fonts
+ *
+ * The code below includeds custom fonts from TypeKit and Google Fonts. This
+ * allows the use of CRISP Agency brand fonts such as Lato and Playfair Display.
+ */
+
+@import url('https://use.typekit.net/ljc0vbg.css');
+
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
+
+
+/**
+ * 2.0 - Base Elements
+ */
+
+body {
+	font-family: 'lato', sans-serif;
+	font-size: 13px;
+	line-height: 25px;
+	margin: 30px;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: 800;
+	letter-spacing: 1px;
+	line-height: 40px;
+	margin-bottom: 20px;
+	margin-top: 50px;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: 800;
+	letter-spacing: 1px;
+	line-height: 35px;
+	margin-bottom: 20px;
+	margin-top: 50px;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-size: 13px;
+	font-weight: 800;
+	letter-spacing: 2px;
+	margin-bottom: 20px;
+	margin-top: 40px;
+	text-transform: uppercase;
+}
+
+h4 {
+	font-size: 13px;
+	font-weight: 800;
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+h5 {
+	font-size: 13px;
+	font-style: italic;
+	font-weight: 800;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+h6 {
+	font-size: 13px;
+	font-style: italic;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
+
+p {
+	margin-bottom: 20px;
+	margin-top: 0;
+}
+
+blockquote {
+	background-color: #f7f7f7;
+	font-family: 'Playfair Display', serif;
+	font-size: 20px;
+	font-style: italic;
+	font-weight: 700;
+	letter-spacing: 1px;
+	line-height: 30px;
+	margin: 50px 0;
+	padding: 30px 30px 10px 30px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+pre {
+	background-color: #f7f7f7;
+	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 12px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	overflow-x: scroll;
+	padding: 30px;
+}
+
+ul {
+	list-style: none;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding-left: 0;
+}
+
+ul > li {
+	background-image: url('images/icon-plus-gray.svg');
+	background-position: 0 6px;
+	background-repeat: no-repeat;
+	background-size: 13px 13px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding-left: 20px;
+}
+
+li ul {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+ol {
+	counter-reset: item;
+	list-style: none;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	padding-left: 0;
+}
+
+ol li {
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding-left: 20px;
+	position: relative;
+}
+
+ol > li:before {
+	color: #ccc;
+	content: counter(item) '. ';
+	counter-increment: item;
+	font-weight: 700;
+	left: 1px;
+	position: absolute;
+	top: 0;
+}
+
+li ol {
+	margin-bottom: 0;
+	margin-top: 0;
+}
+
+hr {
+	background-color: #bea67c;
+	border: none;
+	height: 3px;
+	margin: 50px 0;
+	max-width: 60px;
+}
+
+img {
+	height: auto;
+	max-width: 100%;
+}
+
+a {
+	color: #bea67c;
+	display: inline-block;
+	position: relative;
+	text-decoration: none;
+	transition: all 0.3s;
+}
+
+a:hover {
+	color: #525252;
+}
+
+a:before {
+	background-color: #bea67c;
+	bottom: -2px;
+	content: '';
+	display: block;
+	height: 3px;
+	left: 50%;
+	position: absolute;
+	transition: width 0.3s;
+	transform: translateX(-50%); 
+	width: 0;
+}
+
+a:hover:before {
+	width: 100%;
+}
+
+::-moz-selection {
+	background-color: #ccc;
+}
+
+::selection {
+	background-color: #ccc;
+}
+
+
+/**
+ * 3.0 - Wordpress Elements
+ */
+
+#wpadminbar a:before {
+	display: none;
+}
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal;
+}
+
+.screen-reader-text:focus {
+	background-color: #f7f7f7;
+	clip: auto;
+	clip-path: none;
+	display: block;
+	font-size: 12px;
+	height: auto;
+	left: 30px;
+	line-height: 20px;
+	max-width: calc(100% - 120px);
+	outline: none;
+	padding: 30px;
+	text-decoration: none;
+	top: 30px;
+	width: auto;
+	z-index: 100000;
+}
+
+.alignnone {
+	clear: both;
+	display: block;
+	margin: 0 0 20px 0;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 20px auto;
+}
+
+.alignright {
+	float: right;
+	margin: 0 0 20px 20px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0 20px 20px 0;
+}
+
+.wp-caption {
+	background: #fff;
+	max-width: 100%;
+	text-align: center;
+}
+
+.wp-caption img {
+	display: block;
+	width: 100%;
+}
+
+.wp-caption-text {
+	font-size: 12px;
+	line-height: 20px;
+	padding-left: 43px;
+	padding-top: 14px;
+	position: relative;
+	text-align: left;
+}
+
+.wp-caption-text:before {
+	background-color: #bea67c;
+	content: '';
+	display: block;
+	height: 60px;
+	left: 20px;
+	position: absolute;
+	top: -30px;
+	width: 3px;
+}
+
+.gallery {
+	margin: 10px -10px;
+}
+
+.gallery:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+.gallery-item {
+	float: left;
+	margin: 10px;
+	width: calc(100% - 20px);
+}
+
+.gallery-item a {
+	display: inline;
+    overflow: hidden;
+}
+
+.gallery-item a:before {
+	display: none;
+}
+
+.gallery-item img {
+	display: block;
+	width: 100%;
+}
+
+@media (min-width:400px) {
+	
+	.gallery:not(.gallery-columns-1) .gallery-item {
+		width: calc(50% - 20px);
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(2n - 1) {
+        clear: left;
+	}
+
+}
+
+@media (min-width:500px) {
+	
+	.gallery:not(.gallery-columns-1) .gallery-item,
+	.gallery:not(.gallery-columns-2) .gallery-item {
+		width: calc(33.33% - 20px);
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(2n + 1) {
+        clear: none;
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(3n + 1),
+    .gallery:not(.gallery-columns-2) .gallery-item:nth-child(3n + 1) {
+        clear: left;
+	}
+	
+}
+
+@media (min-width:600px) {
+	
+	.gallery:not(.gallery-columns-1) .gallery-item,
+	.gallery:not(.gallery-columns-2) .gallery-item,
+	.gallery:not(.gallery-columns-3) .gallery-item {
+		width: calc(25% - 20px);
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(3n + 1),
+	.gallery:not(.gallery-columns-2) .gallery-item:nth-child(3n + 1) {
+        clear: none;
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(4n + 1),
+    .gallery:not(.gallery-columns-2) .gallery-item:nth-child(4n + 1),
+    .gallery:not(.gallery-columns-3) .gallery-item:nth-child(4n + 1) {
+        clear: left;
+	}
+	
+}
+
+@media (min-width:700px) {
+	
+	.gallery:not(.gallery-columns-1) .gallery-item,
+	.gallery:not(.gallery-columns-2) .gallery-item,
+	.gallery:not(.gallery-columns-3) .gallery-item,
+	.gallery:not(.gallery-columns-4) .gallery-item {
+		width: calc(20% - 20px);
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(4n + 1),
+	.gallery:not(.gallery-columns-2) .gallery-item:nth-child(4n + 1),
+	.gallery:not(.gallery-columns-3) .gallery-item:nth-child(4n + 1) {
+        clear: none;
+	}
+
+	.gallery:not(.gallery-columns-1) .gallery-item:nth-child(5n + 1),
+    .gallery:not(.gallery-columns-2) .gallery-item:nth-child(5n + 1),
+    .gallery:not(.gallery-columns-3) .gallery-item:nth-child(5n + 1),
+    .gallery:not(.gallery-columns-4) .gallery-item:nth-child(5n + 1) {
+        clear: left;
+	}
+	
+}
