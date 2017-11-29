@@ -11,13 +11,23 @@
  */
 
 /**
- * Register Styles
+ * Table of Contents
+ *
+ * 1.0 - Register Styles
+ * 2.0 - Register Scripts
+ * 3.0 - Register Features
+ * 4.0 - Prepare Loading Animations
+ */
+
+/**
+ * 1.0 - Register Styles
  *
  * The code below registers custom WordPress styles using wp_register_style()
  * function.
  *
  * @since Mutiny 0.0.2
  */
+
 function mutiny_styles() {
 	
 	// Load Main Stylesheet
@@ -27,13 +37,14 @@ function mutiny_styles() {
 add_action( 'wp_enqueue_scripts', 'mutiny_styles' );
 
 /**
- * Register Scripts
+ * 2.0 - Register Scripts
  *
  * The code below registers custom WordPress scripts using wp_register_script()
  * function.
  *
  * @since Mutiny 0.0.3
  */
+
 function mutiny_scripts() {
 
 	// Load TweenMax
@@ -46,13 +57,14 @@ function mutiny_scripts() {
 add_action( 'wp_enqueue_scripts', 'mutiny_scripts' );
 
 /**
- * Register Features
+ * 3.0 - Register Features
  *
  * The code below registers custom WordPress theme features using 
  * add_theme_support() function.
  *
  * @since Mutiny 0.0.2
  */
+
 function mutiny_features()  {
 
 	// Support HTML5 Semantic Markup
@@ -63,3 +75,31 @@ function mutiny_features()  {
 
 }
 add_action( 'after_setup_theme', 'mutiny_features' );
+
+/**
+ * 4.0 - Prepare For Loading Animations
+ *
+ * The code below hides the main content area by default for users that have
+ * JavaScript so the loading animation can be displayed.
+ *
+ * @since Mutiny 0.0.3
+ */
+
+function mutiny_loading_animation_prep() {
+	
+	$styles = '
+	    <style>
+		    html.js .page-wrapper { display: none; }
+	    </style>
+	';	
+	
+    $scripts = '
+    	<script>
+	    	document.documentElement.className += " js";
+	    </script>
+    ';
+
+	echo $styles . $scripts;
+
+}
+add_action( 'wp_enqueue_scripts', 'mutiny_loading_animation_prep', 1, 1 );

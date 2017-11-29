@@ -1,14 +1,13 @@
-/*
-Theme Name: Mutiny
-Theme URI: https://github.com/crisp-agency/mutiny
-Author: CRISP Agency
-Author URI: https://crisp.agency
-Description: The Mutiny theme was built for the CRISP Agency website.
-Version: 0.0.2
-Text Domain: mutiny
-Tags: accessibility-ready, custom-menu, editor-style, translation-ready
-*/
- 
+/**
+ * Theme Name: Mutiny
+ * Theme URI: https://github.com/crisp-agency/mutiny
+ * Author: CRISP Agency
+ * Author URI: https://crisp.agency
+ * Description: The Mutiny theme was built for the CRISP Agency website.
+ * Version: 0.0.2
+ * Text Domain: mutiny
+ * Tags: accessibility-ready, custom-menu, editor-style, translation-ready
+ */
 
 /**
  * Table of Contents
@@ -16,10 +15,8 @@ Tags: accessibility-ready, custom-menu, editor-style, translation-ready
  * 1.0 - Embed Fonts
  * 2.0 - Base Elements
  * 3.0 - Wordpress Elements
- * 3.0 - Wordpress Elements
- * 4.0 - Loading Animations
+ * 4.0 - Loading Animation
  */
-
 
 /**
  * 1.0 - Embed Fonts
@@ -32,21 +29,22 @@ Tags: accessibility-ready, custom-menu, editor-style, translation-ready
 
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i');
 
-
 /**
  * 2.0 - Base Elements
  */
 
 body {
+	background: #fff;
 	font-family: 'lato', sans-serif;
 	font-size: 13px;
 	line-height: 25px;
-	margin: 30px;
+	margin: 0;
+	word-wrap: break-word;
 }
 
 h1 {
 	font-size: 30px;
-	font-weight: 800;
+	font-weight: 200;
 	letter-spacing: 1px;
 	line-height: 40px;
 	margin-bottom: 20px;
@@ -75,9 +73,13 @@ h3 {
 
 h4 {
 	font-size: 13px;
-	font-weight: 800;
+	font-weight: 400;
+	letter-spacing: 2px;
 	margin-bottom: 20px;
 	margin-top: 40px;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	text-transform: uppercase;
 }
 
 h5 {
@@ -103,27 +105,48 @@ p {
 }
 
 blockquote {
-	background-color: #f7f7f7;
-	font-family: 'Playfair Display', serif;
-	font-size: 20px;
-	font-style: italic;
-	font-weight: 700;
-	letter-spacing: 1px;
+	background-color: #f2f2f2;
+	font-size: 18px;
+	font-weight: 200;
 	line-height: 30px;
 	margin: 50px 0;
 	padding: 30px 30px 10px 30px;
-	text-align: center;
-	text-transform: uppercase;
 }
 
 pre {
-	background-color: #f7f7f7;
+	background-color: #f2f2f2;
 	font-family: 'Lucida Console', Monaco, monospace;
-	font-size: 12px;
+	font-size: 11px;
 	margin-bottom: 50px;
 	margin-top: 50px;
 	overflow-x: scroll;
 	padding: 30px;
+}
+
+code,
+keyboard {
+	font-family: 'Lucida Console', Monaco, monospace;
+	font-size: 11px;
+}
+
+table {
+	border: none;
+	border-collapse: collapse;
+	display: block;
+	line-height: 20px;
+	max-width: 100%;
+	overflow-x: scroll;
+}
+
+tr {
+	border: 1px solid #f2f2f2;
+	vertical-align: top;
+}
+
+th,
+td {
+	border: 1px solid #f2f2f2;
+	padding: 10px 15px;
 }
 
 ul {
@@ -164,7 +187,7 @@ ol li {
 }
 
 ol > li:before {
-	color: #ccc;
+	color: #bcbcbc;
 	content: counter(item) '. ';
 	counter-increment: item;
 	font-weight: 700;
@@ -191,19 +214,22 @@ img {
 	max-width: 100%;
 }
 
+iframe {
+	max-width: 100%;
+}
+
 a {
 	color: #bea67c;
 	text-decoration: none;
 }
 
 ::-moz-selection {
-	background-color: #ccc;
+	background-color: #bcbcbc;
 }
 
 ::selection {
-	background-color: #ccc;
+	background-color: #bcbcbc;
 }
-
 
 /**
  * 3.0 - Wordpress Elements
@@ -222,7 +248,7 @@ a {
 }
 
 .screen-reader-text:focus {
-	background-color: #f7f7f7;
+	background-color: #f2f2f2;
 	clip: auto;
 	clip-path: none;
 	display: block;
@@ -385,19 +411,14 @@ a {
     .gallery:not(.gallery-columns-4) .gallery-item:nth-child(5n + 1) {
         clear: left;
 	}
-	
-}
 
+}
 
 /**
- * 4.0 - Loading Animations
+ * 4.0 - Loading Animation
  */
 
-.mutiny {
-	display: none;
-}
-
-.pencils {
+.loading-graphic {
 	display: none;
 	left: 50%;
 	position: absolute;

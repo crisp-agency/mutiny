@@ -10,84 +10,109 @@
  * @version 0.0.1
  */
   
+/**
+ * Table of Contents
+ *
+ * 1.0 - Loading Animation
+ * 2.0 - Hover Effects
+ */
+
 // Encapsulate Code
-( function( $ ) {
+( function($) {
 
 	// After Document is Ready
 	$(document).ready( function() {
 
 		/**
-		 * Loading Animations
+		 * 1.0 - Loading Animation
 		 *
-		 * The code below handles the animations that happen when a page is first 
-		 * loaded. This includes fading and animating the pencils.
+		 * The code below controls the loading animation that is displayed during
+		 * every page load.
+		 *
+		 * @since Mutiny 0.0.3
 		 */
 
-		// Store Needed Variables
+		// Store Needed Elements
 		var pageHasLoaded = false,
 		    pencilRotations = 0,
-		    pencilEasing = Elastic.easeOut.config(1, 0.9),
-		    $contentContainer = $('.mutiny'),
-		    $loadingContainer = $('.pencils'),
+		    pencilEasing = Elastic.easeOut.config(1, 1),
+		    pencilSpinDuration = 1,
+		    $pageWrapper = $('.page-wrapper'),
+		    $loadingGraphic = $('.loading-graphic'),
 		    $pencilLeft = $('.pencil.left'),
 		    $pencilRight = $('.pencil.right');
-
-		// Show Pencils
-		var loadingIntro = new TimelineMax( { onComplete: spinPencils } );
-		loadingIntro.to( $loadingContainer, 0.5, { display: 'block' } );
-		loadingIntro.add('pencilsComeIn');
-		loadingIntro.fromTo( $pencilLeft, 1, { opacity: 0, rotation: 0, x: -100 }, { ease: pencilEasing, opacity: 1, rotation: 45, x: 0 }, 'pencilsComeIn');
-		loadingIntro.fromTo( $pencilRight, 1, { opacity: 0, rotation: 0, x: 100 }, { ease: pencilEasing, opacity: 1, rotation: -45, x: 0 }, 'pencilsComeIn');
 
 		// Flag When Page is Loaded
 		$(window).load( function() {
 			pageHasLoaded = true;
 		} );
+
+		// Show Loading Graphic
+		var showLoadingGraphic = new TimelineMax( { onComplete: animateLoadingGraphic } );
+		showLoadingGraphic.set( $pencilLeft, { opacity: 0, rotation: 0, x: -100 } )
+		  .set( $pencilRight, { opacity: 0, rotation: 0, x: 100 } )
+		  .add( 'pencilsComeIn' )
+		  .to( $pencilLeft, pencilSpinDuration, { ease: pencilEasing, opacity: 1, rotation: 45, x: 0 }, 'pencilsComeIn' )
+		  .to( $pencilRight, pencilSpinDuration, { ease: pencilEasing, opacity: 1, rotation: -45, x: 0 }, 'pencilsComeIn' )
+		  .to( $loadingGraphic, 0.5, { display: 'block' }, 'pencilsComeIn+=.5' );
 		
-		// Rotate Pencils
-		function spinPencils() {
-			
-			// Hide Loader After Page is Loaded
+		// Animate Loading Graphic
+		function animateLoadingGraphic() {
+
+			// Hide Loader
 			if ( pageHasLoaded && pencilRotations >= 1 ) {
-				TweenMax.to( $loadingContainer, .5, { display: 'none', opacity: 0 } );
-				TweenMax.to( $pencilLeft, 2, { ease: pencilEasing, rotation: '+=2' } );
-				TweenMax.to( $pencilRight, 2, { ease: pencilEasing, rotation: '-=2' } );
-				TweenMax.fromTo( $contentContainer, .5, { display: 'block', opacity: 0 }, { opacity: 1, delay: .5 } );
-				setTimeout( function() {
-					$loadingContainer.remove();
-				}, 1000)
+				var hideLoadingGraphic = new TimelineMax( { onComplete: function() {
+					$loadingGraphic.remove();
+					TweenMax.fromTo( $pageWrapper, .5,
+						{ display: 'none', opacity: 0 },
+						{ display: 'block', opacity: 1 }
+					);
+				} } );
+				hideLoadingGraphic.add( 'hideLoadingGraphic' )
+				  .to( $loadingGraphic, 1, { opacity: 0 }, 'hideLoadingGraphic' )
+				  .to( $pencilLeft, pencilSpinDuration, { ease: pencilEasing, rotation: '+=90' }, 'hideLoadingGraphic' )
+				  .to( $pencilRight, pencilSpinDuration, { ease: pencilEasing, rotation: '-=90' }, 'hideLoadingGraphic' );
 			}
 			
-			// Spin Pencils if Page is Loading
+			// Spin Pencils
 			else {
 				pencilRotations++;
 				if ( pencilRotations % 2 ) {
-					TweenMax.fromTo( $pencilLeft, 1, { rotation: 45 }, { ease: pencilEasing, rotation: 225 } );
-					TweenMax.fromTo( $pencilRight, 1, { rotation: -45 }, { ease: pencilEasing, rotation: -225, onComplete: spinPencils } );					
+					var oddRotation = new TimelineMax( { onComplete: animateLoadingGraphic } );
+					oddRotation.set( $pencilLeft, { rotation: 45 } )
+					  .set( $pencilRight, { rotation: -45 } )
+					  .add( 'spinPencils' )
+					  .to( $pencilLeft, pencilSpinDuration, { ease: pencilEasing, rotation: 225 }, 'spinPencils' )
+					  .to( $pencilRight, pencilSpinDuration, { ease: pencilEasing, rotation: -225, }, 'spinPencils' );
 				}
 				else {
-					TweenMax.fromTo( $pencilLeft, 1, { rotation: 225 }, { ease: pencilEasing, rotation: 405 } );
-					TweenMax.fromTo( $pencilRight, 1, { rotation: -225 }, { ease: pencilEasing, rotation: -405, onComplete: spinPencils } );
+					var evenRotation = new TimelineMax( { onComplete: animateLoadingGraphic } );
+					evenRotation.set( $pencilLeft, { rotation: 225 } )
+					  .set( $pencilRight, { rotation: -225 } )
+					  .add( 'spinPencils' )
+					  .to( $pencilLeft, pencilSpinDuration, { ease: pencilEasing, rotation: 405 }, 'spinPencils' )
+					  .to( $pencilRight, pencilSpinDuration, { ease: pencilEasing, rotation: -405 }, 'spinPencils' );
 				}
 			}
-		}
-		
-		// Fade Out Page For Internal Page Link Clicks
-		$('a[href^="' + window.location.origin + '"]').click( function(event) {
-			event.preventDefault();
-			var linkDestination = $(this).attr('href');
-			TweenMax.to( $('.mutiny'), .25, { opacity: 0, display: 'none', onComplete: function() {
-				window.location = linkDestination;
-			} } );
-		} );
 
-		// Link Hover Effect
-		$('.main a').hover( function() {
-			TweenMax.to( $(this), .4, { color: '#525252' } );
+		}
+				
+		/**
+		 * 2.0 - Hover Effects
+		 *
+		 * The code below controls the various hover animation effects that are
+		 * displayed throughout the website.
+		 *
+		 * @since Mutiny 0.0.3
+		 */
+
+		// Links
+		$('.page-wrapper a').hover( function() {
+			TweenMax.to( $(this), .5, { ease: Power4.easeOut, color: '#bcbcbc' } );
 		}, function() {
-			TweenMax.to( $(this), .4, { color: '#bea67c' } );
-		} );
-	
+			TweenMax.to( $(this), .5, { ease: Power4.easeOut, color: '#bea67c' } );
+		} );		
+
 	} );
 
 } )( jQuery );

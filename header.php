@@ -19,4 +19,4 @@
 		<?php wp_head(); ?>
 	</head>
 	<body <?php body_class(); ?>>
-		<section class="mutiny">
+		<section class="page-wrapper">
